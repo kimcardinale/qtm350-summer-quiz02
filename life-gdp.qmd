@@ -1,0 +1,31 @@
+---
+title: "Life Expectancy and GDP per Capita"
+format: html
+---
+
+This page explores the relationship between life expectancy and GDP per capita using the Gapminder dataset. In general, we expect to see a positive assocation, where countries with higher GDP per capita tend to have longer life expectancies.
+
+Let's take a look at it below:
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+gapminder = pd.read_csv("gapminder.csv")
+
+# Plot
+plt.figure(figsize=(10,6))
+for year in [1952, 1962, 1972, 1982, 1992, 2002]:
+    subset = gapminder[gapminder["year"] == year]
+    plt.scatter(subset["gdp_per_capita"], subset["life_expectancy"], label=year, alpha=0.6)
+
+plt.xscale("log")
+plt.xlabel("GDP per Capita (log scale)")
+plt.ylabel("Life Expectancy")
+plt.title("Life Expectancy vs GDP per Capita by Year")
+plt.legend(title="Year")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```

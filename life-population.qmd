@@ -1,0 +1,31 @@
+---
+title: "Life Expectancy and Population"
+format: html
+---
+
+This page explores the relationship between life expectancy and population size across countries using the Gapminder dataset. It  shows how population size might relate to life expectancy trends over time.
+
+Let's take a look at it below:
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+gapminder = pd.read_csv("gapminder.csv")
+
+# Plot
+plt.figure(figsize=(10,6))
+for year in [1952, 1962, 1972, 1982, 1992, 2002]:
+    subset = gapminder[gapminder["year"] == year]
+    plt.scatter(subset["population_millions"], subset["life_expectancy"], label=year, alpha=0.5)
+
+plt.xscale("log")
+plt.xlabel("Population (millions, log scale)")
+plt.ylabel("Life Expectancy")
+plt.title("Life Expectancy vs Population by Year")
+plt.legend(title="Year")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
