@@ -1,8 +1,7 @@
 project:
   title: "qtm350-summer-quiz02"
   type: website
-
-output-dir: docs
+  output-dir: docs
 
 website:
   navbar:
